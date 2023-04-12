@@ -118,23 +118,9 @@ footer .attribution a {
   color: hsl(248, 32%, 49%);
 }
 
-@media (min-width: 576px) {
-  .box form .error-icon1,
-  .box form .error-icon2,
-  .box form .error-icon3,
-  .box form .error-icon4 {
-    right: 40px;
-  }
-}
 @media (min-width: 768px) {
   body {
     background: hsl(0, 100%, 74%) url("../images/bg-intro-desktop.png") top center/cover;
-  }
-  body .box form .error-icon1,
-  body .box form .error-icon2,
-  body .box form .error-icon3,
-  body .box form .error-icon4 {
-    right: 50px;
   }
 }
 @media (min-width: 992px) {
