@@ -54,8 +54,8 @@ body {
 		border-radius: 8px;
 		box-shadow: 0px 7px 2px 0px hsla(249, 10%, 26%, 0.3);
 
-		input,
-		button {
+		.form-box input,
+		.submit-btn {
 			margin-top: 20px;
 			height: 50px;
 			width: 90%;
@@ -64,13 +64,35 @@ body {
 			font-weight: bold;
 		}
 
-		input {
+		.form-box input {
 			padding-left: 20px;
 			border: 1px solid $grayishblue;
 			border-radius: 5px;
 		}
 
-		button {
+		.form-box.error input {
+			border: 1px solid $red;
+			background-color: hsla(0, 100%, 74%, .2);
+			background-image: url('../images/icon-error.svg');
+			background-repeat: no-repeat;
+			background-position: 99% center;
+		}
+
+		.form-box .error-text {
+			margin: 10px 40px 0 0;
+			text-align: right;
+			font-size: 12px;
+			font-style: italic;
+			color: $red;
+			visibility: hidden;
+		}
+		
+		.form-box.error .error-text {
+			visibility: visible;
+		}
+
+		.submit-btn{
+			display: inline-block;
 			text-transform: uppercase;
 			background-color: $green;
 			color: $white;
@@ -81,30 +103,8 @@ body {
 			cursor: pointer;
 		}
 
-		button:hover {
+		.submit-btn:hover {
 			background-color: $lightgreen;
-		}
-
-		.error-icon1,
-		.error-icon2,
-		.error-icon3,
-		.error-icon4 {
-			position: absolute;
-			right: 30px;
-			margin-top: -37px;
-			display: none;
-		}
-
-		.error-fname,
-		.error-lname,
-		.error-email,
-		.error-password {
-			margin-top: 10px;
-			margin-right: 5%;
-			font-size: 12px;
-			text-align: right;
-			font-style: italic;
-			color: $red;
 		}
 	}
 

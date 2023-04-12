@@ -1,61 +1,60 @@
+const username = document.querySelector('#username');
+const username2 = document.querySelector('#username2');
+const pass = document.querySelector('#password');
+const email = document.querySelector('#email');
 const submitBtn = document.querySelector('.submit-btn');
-const forName = document.querySelector('.fname');
-const lastName = document.querySelector('.lname');
-const email = document.querySelector('.email-input');
-const password = document.querySelector('.password');
 
-function validateForm() {
-	const mailFormat = /^\w+([.-]?=\w+)*@\w+([.-]?=\w+)*(.\w{2,3})+$/;
-    
-    if (forName.value.length < 1) {
-        document.querySelector('.error-fname').style.display = 'block';
-        document.querySelector('.error-fname').innerHTML =
-            'First name cannot be empty';
-        document.querySelector('.error-icon1').style.display = 'block';
-        forName.style.borderColor = "red";
-    } else {
-        document.querySelector('.error-fname').style.display = 'none';
-        document.querySelector('.error-icon1').style.display = 'none';
-        forName.style.borderColor = "";
-    }
+const showError = (input, msg) => {
+	const formBox = input.parentElement;
+	const errorMsg = formBox.querySelector('.error-text');
 
-    if (lastName.value.length < 1) {
-        document.querySelector('.error-lname').style.display = 'block';
-        document.querySelector('.error-lname').innerHTML =
-            'Last name cannot be empty';
-        document.querySelector('.error-icon2').style.display = 'block';
-        lastName.style.borderColor = "red";
-    } else {
-        document.querySelector('.error-lname').style.display = 'none';
-        document.querySelector('.error-icon2').style.display = 'none';
-        lastName.style.borderColor = "";
-    }
+	formBox.classList.add('error');
+	errorMsg.textContent = msg;
+};
 
-	if (email.value.match(mailFormat)) {
-	} else {
-		document.querySelector('.error-email').style.display = 'block';
-		document.querySelector('.error-email').innerHTML =
-			'Looks like this is not an email';
-		document.querySelector('.error-icon3').style.display = 'block';
-        email.style.borderColor = "red";
+
+const clearError = (input) => {
+	const formBox = input.parentElement;
+	formBox.classList.remove('error');
+};
+
+
+const checkForm = (input) => {
+	input.forEach((el) => {
+		if (el.value === '') {
+			showError(el, el.placeholder);
+		} else {
+			clearError(el);
+		}
+	});
+};
+
+
+const checkLength = (input, min) => {
+	if (input.value.length < min) {
+		showError(input, `${input.placeholder} cannot by empty. Minimum ${min} characters`);
 	}
+};
 
 
-    if (password.value.length < 1) {
-        document.querySelector('.error-password').style.display = 'block';
-		document.querySelector('.error-password').innerHTML =
-			'Password cannot be empty';
-		document.querySelector('.error-icon4').style.display = 'block';
-        password.style.borderColor = "red";
-    } 
+const checkMail = (email) => {
+	const re =
+		/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,3})$/i;
 
-    if (password.value.length > 1 && document.querySelector('.password').value.length < 8) {
-        document.querySelector('.error-password').style.display = 'block';
-		document.querySelector('.error-password').innerHTML =
-			'Password is too short. Minimum 8 characters';
-		document.querySelector('.error-icon4').style.display = 'block';
-        password.style.borderColor = "red";
-    } 
-}
+	if (re.test(email.value)) {
+		clearError(email);
+	} else {
+		showError(email, 'Looks like this is not an email');
+	}
+};
 
-submitBtn.addEventListener('click', validateForm);
+submitBtn.addEventListener('click', (e) => {
+	e.preventDefault();
+
+	checkForm([username, username2, pass, email]);
+	checkLength(username, 3);
+	checkLength(username2, 3);
+	checkLength(pass, 8);
+	checkMail(email);
+
+});

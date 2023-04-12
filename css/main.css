@@ -47,8 +47,8 @@ body {
   border-radius: 8px;
   box-shadow: 0px 7px 2px 0px hsla(249, 10%, 26%, 0.3);
 }
-.box form input,
-.box form button {
+.box form .form-box input,
+.box form .submit-btn {
   margin-top: 20px;
   height: 50px;
   width: 90%;
@@ -56,12 +56,31 @@ body {
   letter-spacing: 1px;
   font-weight: bold;
 }
-.box form input {
+.box form .form-box input {
   padding-left: 20px;
   border: 1px solid hsl(246, 25%, 77%);
   border-radius: 5px;
 }
-.box form button {
+.box form .form-box.error input {
+  border: 1px solid hsl(0, 100%, 74%);
+  background-color: hsla(0, 100%, 74%, 0.2);
+  background-image: url("../images/icon-error.svg");
+  background-repeat: no-repeat;
+  background-position: 99% center;
+}
+.box form .form-box .error-text {
+  margin: 10px 40px 0 0;
+  text-align: right;
+  font-size: 12px;
+  font-style: italic;
+  color: hsl(0, 100%, 74%);
+  visibility: hidden;
+}
+.box form .form-box.error .error-text {
+  visibility: visible;
+}
+.box form .submit-btn {
+  display: inline-block;
   text-transform: uppercase;
   background-color: hsl(154, 59%, 51%);
   color: hsl(0, 0%, 100%);
@@ -71,28 +90,8 @@ body {
   transition: background-color 0.3s;
   cursor: pointer;
 }
-.box form button:hover {
+.box form .submit-btn:hover {
   background-color: hsl(154, 65%, 68%);
-}
-.box form .error-icon1,
-.box form .error-icon2,
-.box form .error-icon3,
-.box form .error-icon4 {
-  position: absolute;
-  right: 30px;
-  margin-top: -37px;
-  display: none;
-}
-.box form .error-fname,
-.box form .error-lname,
-.box form .error-email,
-.box form .error-password {
-  margin-top: 10px;
-  margin-right: 5%;
-  font-size: 12px;
-  text-align: right;
-  font-style: italic;
-  color: hsl(0, 100%, 74%);
 }
 .box__info {
   margin: 20px auto;
